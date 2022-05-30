@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,38 +8,70 @@
     <link rel="stylesheet" href="./styles.css">
     <title>Marvel DOCS</title>
 </head>
+
 <body>
 
     <div class="container">
         <header class="header">
 
-        
-        <div class="logo">
-            <a href="./index.html">
-                <img src="./imgs/logo.webp" alt="Marvel Logo">
-            </a>
+
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="./imgs/logo.webp" alt="Marvel Logo">
+                </a>
+            </div>
+            <nav class="links">
+                <a href="" class="link active">Inicio</a>
+                <a href="" class="link ">Comics</a>
+                <a href="" class="link">Personajes</a>
+                <a href="" class="link">Peliculas</a>
+                <a href="" class="link">Series</a>
+            </nav>
+        </header>
+
+        <div class="algunosPersonajes">
+
+
         </div>
-        <nav class="links"> 
-            <a href="" class="link active">Inicio</a>
-            <a href="" class="link ">Comics</a>
-            <a href="" class="link">Personajes</a>
-            <a href="" class="link">Peliculas</a>
-            <a href="" class="link">Series</a>
-        </nav>
-    </header>
+        <div class="modal">
+            <div class="content">
+                <div class="wrapper">
+                    <div class="infoyimagen">
 
-    <div class="algunosPersonajes">
+                        <img id="img" src="./imgs/glorian.jpg" alt="">
+                        <div class="info">
 
+                            <p id="nombre">nombre</p>
+                            <p id="id">Id</p>
+                            <p id="descripcion">Descripcion</p>
+                            
+                        </div>
+                    </div>
+                    <div class="comicsyhistorias">
 
+                        <div class="comicswrapper">
+                            <p>Comics</p>
+                            <div class="comics"></div>
 
-    </div>
+                        </div>
+                        <div class="historiaswrapper">
 
-    <footer>
-        <p>Creado Por: <b> <a href="https://www.github.com/switchinhg">  Santiago Font</a></b></p>
-    </footer>
-    </div>
-    
+                            <p>historias</p>
+                            <div class="historias"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+            <footer>
+                <p>Creado Por: <b> <a href="https://www.github.com/switchinhg"> Santiago Font</a></b></p>
+            </footer>
+        </div>
+
 </body>
 
 <script src="./js/js.js"></script>
+
 </html>

@@ -12,6 +12,8 @@ html{
     display:flex;
     flex-direction: column;
     gap: 1rem;
+    background-color: #fafafa;
+    
 }
 .header{
     display: flex;
@@ -49,14 +51,17 @@ html{
 
 }
 .personaje{
-    border: solid 1px black;
+    box-shadow: 1px 1px 5px gray;
+    background-color: white;
+    border-radius: 5px;
     width: 250px;
-    height: 295px;
+    height: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 1rem;
+    gap: 1rem;
 }
 .personaje:hover{
     box-shadow: 1px 0 10px rgba(0, 0, 0, 0.74);
@@ -71,7 +76,79 @@ html{
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+.boton{
+    padding: 0.2rem 1rem;
+    background-color: white;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.74);
+    border-radius: 5px;
+}
+.boton:hover{
+    background-color: gray;
+    color: white;
+}
+.modal{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.459);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.modal-active{
+    display: flex;
+}
+.content{
+    width: 800px;
+    height: 600px;
+    background-color: #fafafa;
+    border-radius: 5px;
 
+}
+.wrapper{
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+}
+
+.infoyimagen{
+    display: flex;
+    gap: 5rem;
+}
+.infoyimagen img{
+    height: 200px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.comicsyhistorias{
+    display: flex;
+    gap: 1rem;
+}
+.comics{
+    height: 200px;
+    min-width: 300px;
+    border: solid 1px black;
+    overflow-y: scroll;
+    padding: 1rem;
+}
+.historias{
+    height: 200px;
+    min-width: 300px;
+    border: solid 1px black;
+    overflow-y: scroll;
+    padding: 1rem;
+}
+#descripcion{
+    height: 150px;
+    overflow-y: auto;
+}
 
 /* Footer */
 footer{
