@@ -11,7 +11,7 @@ function cambiarperso() {
 
 /* Traido de HTMl */
 let img = document.getElementById('img')
-let nombre = document.getElementById('nombre')
+let nombre = document.getElementById('nombrem')
 let id = document.getElementById('id')
 let desc = document.getElementById('descripcion')
 let comics = document.getElementsByClassName("comics")[0]
@@ -58,7 +58,7 @@ const ntimes = (n) => {
         }
         persosindex()
     }
-    cargarPersos()
+    setTimeout(cargarPersos,3000)    
 }
 
 ntimes(6)
@@ -70,14 +70,13 @@ function cargarPersos() {
     
     let a = JSON.parse(localStorage.getItem('personajesindex'))
     persopadre.innerHTML = ''
-
+    
     a.forEach(p => {
         console.log("entre")
-        p.thumbnail
         let perso = document.createElement('div')
         perso.classList.add('personaje')
         perso.innerHTML = `
-                <p id="nombre">${p.name}</p>
+                <p id="nombre"> ${p.name} </p>
                 <img id="thumb" src=${p.thumbnail.path}.${p.thumbnail.extension} alt="">
                 <p id="corto">${!p.description?`<p id="corto">N° de comics: ${p.stories.available}</p>`:`${p.description}` }</p>
                 <button id="vermas${p.id}" class="boton">Ver Más</button>
@@ -90,7 +89,6 @@ function cargarPersos() {
         button.addEventListener('click', () => {
             modal.classList.toggle("modal-active")
             img.src = `${p.thumbnail.path}.${p.thumbnail.extension}`
-
             nombre.innerHTML = `<b>Nombre</b>: ${p.name}`
 
             id.innerHTML = `<b>ID</b>:${p.id}`
