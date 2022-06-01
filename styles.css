@@ -42,7 +42,7 @@ html{
     width: 200px;
 }
 
-.algunosPersonajes{
+.personajes{
     width: 816px;
     display: flex;
     gap: 2rem;
@@ -82,6 +82,7 @@ html{
     border: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.74);
     border-radius: 5px;
+    cursor: pointer;
 }
 .boton:hover{
     background-color: gray;
@@ -149,6 +150,18 @@ html{
     height: 150px;
     overflow-y: auto;
 }
+/* Cargar más personajes */
+
+.cargarmas{
+    display: flex;
+    justify-content: center;
+}
+.cargarmas button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 
 /* Footer */
 footer{

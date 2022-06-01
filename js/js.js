@@ -1,13 +1,10 @@
 let fetchcomics = 'https://gateway.marvel.com/v1/public/comics?ts=1&apikey=d6b5cfc2f339e698ef1e149331ed4273&hash=b004e618cd225a9b3e0b713eb3c33e16'
 let personajestodos = 'https://gateway.marvel.com/v1/public/characters?limit=100ts=1&apikey=d6b5cfc2f339e698ef1e149331ed4273&hash=b004e618cd225a9b3e0b713eb3c33e16'
 let guardar = 'https://gateway.marvel.com/v1/public/comics?ts=1&apikey=d6b5cfc2f339e698ef1e149331ed4273&hash=b004e618cd225a9b3e0b713eb3c33e16'
+let offset = 0
+console.log(offset)
+let personajesKey = `https://gateway.marvel.com:443/v1/public/characters?limit=18&offset=${offset}&ts=1&apikey=d6b5cfc2f339e698ef1e149331ed4273&hash=b004e618cd225a9b3e0b713eb3c33e16`
 
-
-function cambiarperso() {
-    let num = Math.floor(Math.random() * 1561)
-    let personajesfront = `https://gateway.marvel.com:443/v1/public/characters?&limit=1&offset=${num}&ts=1&apikey=d6b5cfc2f339e698ef1e149331ed4273&hash=b004e618cd225a9b3e0b713eb3c33e16`
-    return personajesfront
-}
 
 /* Traido de HTMl */
 let img = document.getElementById('img')
@@ -16,7 +13,12 @@ let id = document.getElementById('id')
 let desc = document.getElementById('descripcion')
 let comics = document.getElementsByClassName("comics")[0]
 let historias = document.getElementsByClassName("historias")[0]
-
+let persopadre = document.getElementsByClassName("personajes")[0]
+/* Modal */
+let modal = document.getElementsByClassName("modal")[0]
+let modalContainer = document.getElementsByClassName("content")[0]
+/* Boton de cargar mas */
+let cargarmas = document.getElementById("cargarmas")
 //---------------------------
 
 /* fetch(fetchcomics,{
@@ -36,51 +38,33 @@ let historias = document.getElementsByClassName("historias")[0]
     }) */
 
 
-/* Agarra n personajes random y los guarda en localstorage */
-let persopadre = document.getElementsByClassName("algunosPersonajes")[0]
-const ntimes = (n) => {
-    
-    let persos = []
+/* agarra personajes de A-Z y los agrega al html */
 
-    for (let i = 0; i < n; i++) {
-        const persosindex = async () => {
-            const resp = await fetch(cambiarperso(), {
-                Method: 'GET',
-                Params: {
-                    "apikey": "d6b5cfc2f339e698ef1e149331ed4273",
-                    "ts": "1",
-                    "hash": "b004e618cd225a9b3e0b713eb3c33e16"
-                }
-            })
-            const info = await resp.json()
-            persos.push(info.data.results[0])
-            localStorage.setItem("personajesindex", JSON.stringify(persos));
+const pedirPersonajes = async () => {
+    const resp = await fetch(personajesKey, {
+        Method: 'GET',
+        Params: {
+            "apikey": "d6b5cfc2f339e698ef1e149331ed4273",
+            "ts": "1",
+            "hash": "b004e618cd225a9b3e0b713eb3c33e16"
         }
-        persosindex()
-    }
-    setTimeout(cargarPersos,3000)    
-}
+    })
+    /* respuesta de la api convertida a JSON */
+    const info = await resp.json()
+    /* JSON ya trabajado */
 
-ntimes(6)
-
-
-
-/* Carga los personajes en el inicio y tambien en el modal */
-function cargarPersos() {
-    
-    let a = JSON.parse(localStorage.getItem('personajesindex'))
-    persopadre.innerHTML = ''
-    
-    a.forEach(p => {
-        console.log("entre")
+    info.data.results.forEach(p => {
         let perso = document.createElement('div')
+
         perso.classList.add('personaje')
+        
         perso.innerHTML = `
-                <p id="nombre"> ${p.name} </p>
-                <img id="thumb" src=${p.thumbnail.path}.${p.thumbnail.extension} alt="">
-                <p id="corto">${!p.description?`<p id="corto">N° de comics: ${p.stories.available}</p>`:`${p.description}` }</p>
-                <button id="vermas${p.id}" class="boton">Ver Más</button>
-        `
+            <p id="nombre"> ${p.name} </p>
+            <img id="thumb" src=${p.thumbnail.path}.${p.thumbnail.extension} alt="">
+            <p id="corto">${!p.description?`<p id="corto">N° de comics: ${p.stories.available}</p>`:`${p.description}` }</p>
+            <button id="vermas${p.id}" class="boton">Ver Más</button>
+    `
+
         persopadre.appendChild(perso)
 
         let button = document.getElementById(`vermas${p.id}`)
@@ -105,19 +89,24 @@ function cargarPersos() {
             })
         })
     });
+    
 }
 
 
-/* cargarPersos() */
+pedirPersonajes()
 
 
 
-/* Modal */
-let modal = document.getElementsByClassName("modal")[0]
+cargarmas.onclick= () =>{
+    offset +=18
+    personajesKey = `https://gateway.marvel.com:443/v1/public/characters?limit=18&offset=${offset}&ts=1&apikey=d6b5cfc2f339e698ef1e149331ed4273&hash=b004e618cd225a9b3e0b713eb3c33e16`
+    pedirPersonajes() 
+    console.log('entre + 1 ' + offset)
+    
+}
 modal.onclick = () => {
     modal.classList.toggle("modal-active")
 }
-let modalContainer = document.getElementsByClassName("content")[0]
 modalContainer.addEventListener("click", (e) => {
     e.stopPropagation()
 })
