@@ -162,6 +162,22 @@ html{
     cursor: pointer;
 }
 
+/* Buscador */
+.buscador{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.buscador input{
+    width: 500px;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: solid 1px gray;
+}
+.buscador input:focus{
+    outline: none;
+}
 
 /* Footer */
 footer{
